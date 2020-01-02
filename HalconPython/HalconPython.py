@@ -1,19 +1,30 @@
 import sys
+from tkinter import *
+from tkinter import ttk
+window = Tk()
+window.title("Welcom to Halcon")
+window.geometry('325x250')
+window.configure(background = "gray")
+ttk.Button(window, text="Hello").grid()
+window.mainloop()
 
 # clr from package pythonnet
 import clr
 clr.AddReference("System")
 from System import Environment
 
+# Begin setting up access to Halcon
 # Add path to halcondotnet.dll
 HALCONROOT = Environment.GetEnvironmentVariable("HALCONROOT")
 sys.path.append(HALCONROOT+"/bin/dotnet35")
 
 # Add halcondotnet reference
 clr.AddReference("halcondotnet")
+clr.AddReference("hdevenginedotnet")
 
 # import HALCON from namespace
 from HalconDotNet import *
+# End setting up access to Halcon
 
 ho_Image = HImage()
 ho_ImageInvert = HImage()
